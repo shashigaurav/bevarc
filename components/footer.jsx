@@ -6,7 +6,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="flex flex-col p-6 items-center ">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 container bg-black text-white">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 px-2 py-4 container bg-black text-white">
         <div className="flex flex-col gap-4 items-center">
           <Image
             src={"/logo.svg"}
@@ -86,7 +86,7 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <p className="text-bold underline bg-black w-full text-center p-3">Code Uploaded on: <a className="text-accent" href="http://https://github.com/shashigaurav/bevarc" target="_blank" rel="noopener noreferrer">Github</a></p>
+      <p className="text-bold underline bg-black w-full text-center p-3">Code Uploaded on: <a className="text-accent" href="https://github.com/shashigaurav/bevarc" target="_blank" rel="noopener noreferrer">Github</a></p>
       <p className="text-sm bg-black w-full text-center p-3">&copy; 2024. All Rights are Reserved.</p>
     </footer>
   );

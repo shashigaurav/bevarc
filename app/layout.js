@@ -1,6 +1,5 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/providers/theme-provider";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { Toaster } from "@/components/ui/sonner";
@@ -24,17 +23,10 @@ export default function RootLayout({ children }) {
         <div className="fixed w-full bottom-0 left-0 col-span-2 h-full overflow-hidden -z-10 bg-[url('/grid.svg')] bg-contain bg-bottom">
           <div className="relative w-full h-full bg-gradient-to-b from-background to-transparent" />
         </div>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          disableTransitionOnChange
-          suppressHydrationWarning
-        >
-          <Header />
-          {children}
-          <Footer />
-          <Toaster />
-        </ThemeProvider>
+        <Header />
+        {children}
+        <Footer />
+        <Toaster />
       </body>
     </html>
   );

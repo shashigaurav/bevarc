@@ -35,11 +35,10 @@ const Dashboard = ({ queries, bookings }) => {
           <Card
             key={index}
             onClick={() => setActiveTab(tab.title)}
-            className={`w-full h-full p-2 sm:p-6 hover:border-accent transition-colors cursor-pointer ${
-              activeTab === tab.title
-                ? "bg-accent text-black"
-                : "group hover:border-accent transition-colors"
-            }`}
+            className={`w-full h-full p-2 sm:p-6 hover:border-accent transition-colors cursor-pointer ${activeTab === tab.title
+              ? "bg-accent text-black"
+              : "group hover:border-accent transition-colors"
+              }`}
           >
             <CardContent className="py-2 flex justify-center sm:py-0">
               <tab.icon className="group-hover:text-accent transition-colors w-10 h-10" />
@@ -58,66 +57,71 @@ const Dashboard = ({ queries, bookings }) => {
 
       <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-4">
         {activeTab === "Bookings"
-          ? JSON.parse(bookings).map((booking, index) => (
-              <Card key={index} className="flex flex-col h-full">
-                <CardHeader>
-                  <CardTitle>{booking.name}</CardTitle>
-                  <CardDescription>{booking.address}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="list-disc list-inside text-sm text-muted-foreground space-y-2">
-                    {booking.services.map((service, index) => (
-                      <li className="capitalize" key={index}>
-                        {service}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-                <CardFooter>
-                  <Link
-                    href={`tel:+91${booking.mobile}`}
-                    className="flex items-center gap-2 text-sm text-accent w-full"
+          ? bookings ? JSON.parse(bookings).map((booking, index) => (
+            <Card key={index} className="flex flex-col h-full">
+              <CardHeader>
+                <CardTitle>{booking.name}</CardTitle>
+                <CardDescription>{booking.address}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside text-sm text-muted-foreground space-y-2">
+                  {booking.services.map((service, index) => (
+                    <li className="capitalize" key={index}>
+                      {service}
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+              <CardFooter>
+                <Link
+                  href={`tel:+91${booking.mobile}`}
+                  className="flex items-center gap-2 text-sm text-accent w-full"
+                >
+                  <Button
+                    variant="outline"
+                    className="w-full hover:text-black"
                   >
-                    <Button
-                      variant="outline"
-                      className="w-full hover:text-black"
-                    >
-                      <Phone className="w-4 h-4" /> Call Now
-                    </Button>
-                  </Link>
-                </CardFooter>
-              </Card>
-            ))
-          : JSON.parse(queries).map((query, index) => (
-              <Card key={index} className="flex flex-col h-full">
-                <CardHeader>
-                  <CardTitle>{query.name}</CardTitle>
-                  <CardDescription>{query.email}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="list-disc list-inside text-sm text-muted-foreground space-y-2">
-                    {query.messages.map((message, index) => (
-                      <li className="capitalize" key={index}>
-                        {message}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-                <CardFooter className="flex-1">
-                  <Link
-                    href={`tel:+91${query.mobile}`}
-                    className="flex items-center gap-2 text-sm text-accent w-full mt-auto"
+                    <Phone className="w-4 h-4" /> Call Now
+                  </Button>
+                </Link>
+              </CardFooter>
+            </Card>
+          ))
+            :
+            <p className="col-span-full text-destructive text-center">No Bookings Found</p>
+          : queries ? JSON.parse(queries).map((query, index) => (
+            <Card key={index} className="flex flex-col h-full">
+              <CardHeader>
+                <CardTitle>{query.name}</CardTitle>
+                <CardDescription>{query.email}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside text-sm text-muted-foreground space-y-2">
+                  {query.messages.map((message, index) => (
+                    <li className="capitalize" key={index}>
+                      {message}
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+              <CardFooter className="flex-1">
+                <Link
+                  href={`tel:+91${query.mobile}`}
+                  className="flex items-center gap-2 text-sm text-accent w-full mt-auto"
+                >
+                  <Button
+                    variant="outline"
+                    className="w-full hover:text-black"
                   >
-                    <Button
-                      variant="outline"
-                      className="w-full hover:text-black"
-                    >
-                      <Phone className="w-4 h-4" /> Call Now
-                    </Button>
-                  </Link>
-                </CardFooter>
-              </Card>
-            ))}
+                    <Phone className="w-4 h-4" /> Call Now
+                  </Button>
+                </Link>
+              </CardFooter>
+            </Card>
+          ))
+            :
+            <p className="col-span-full text-destructive text-center">No Queries Found</p>
+        }
       </div>
     </section>
   );
